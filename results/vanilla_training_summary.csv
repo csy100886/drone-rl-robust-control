@@ -1,0 +1,2 @@
+﻿Model,RMSE_Mean(m),RMSE_Std(m),Max_Disp_Mean(m),Settling_Time_Mean(s),Jitter_Mean
+Vanilla_PPO,0.0860,0.0030,0.1172,6.20,0.00139

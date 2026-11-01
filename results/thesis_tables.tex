@@ -1,0 +1,78 @@
+% ===========================================================
+% 학부 졸업논문 4대 핵심 실험 결과 LaTeX 표 (자동 생성본)
+% 필요 패키지: \usepackage{booktabs}, \usepackage{multirow}
+% ===========================================================
+
+\begin{table*}[t]
+\centering
+\caption{정량적 비행 성능 벤치마크: 외란 풍속별 위치 추적 오차 및 안정성 비교}
+\label{tab:benchmark_3way}
+\begin{tabular}{llcccc}
+\toprule
+\textbf{풍속 ($v_w$)} & \textbf{제어기 (Controller)} & \textbf{위치 RMSE (m)} $\downarrow$ & \textbf{최대 밀림 ($e_{\max}$) (m)} $\downarrow$ & \textbf{정착 시간 ($T_s$) (s)} $\downarrow$ & \textbf{생존율 (\%)} $\uparrow$ \\
+\midrule
+\multirow{3}{*}{2.0 m/s}
+ & PID              & 0.298 \pm 0.034 & 1.194 \pm 0.170 & 6.20 \pm 0.00 & 0.0\% \\
+ & Vanilla PPO      & 0.031 \pm 0.003 & 0.042 \pm 0.006 & 0.05 \pm 0.12 & 100.0\% \\
+ & DR-PPO (Ours)    & \textbf{0.073 \pm 0.004} & \textbf{0.092 \pm 0.006} & \textbf{6.20 \pm 0.00} & \textbf{100.0\%} \\
+\cmidrule{1-6}
+\multirow{3}{*}{5.0 m/s}
+ & PID              & 0.291 \pm 0.028 & 1.088 \pm 0.161 & 6.20 \pm 0.00 & 0.0\% \\
+ & Vanilla PPO      & 0.037 \pm 0.003 & 0.083 \pm 0.008 & 0.72 \pm 0.12 & 100.0\% \\
+ & DR-PPO (Ours)    & \textbf{0.074 \pm 0.003} & \textbf{0.117 \pm 0.006} & \textbf{6.20 \pm 0.00} & \textbf{100.0\%} \\
+\cmidrule{1-6}
+\multirow{3}{*}{8.0 m/s}
+ & PID              & 0.312 \pm 0.023 & 1.203 \pm 0.219 & 6.20 \pm 0.00 & 0.0\% \\
+ & Vanilla PPO      & 0.047 \pm 0.003 & 0.135 \pm 0.008 & 0.93 \pm 0.06 & 100.0\% \\
+ & DR-PPO (Ours)    & \textbf{0.080 \pm 0.004} & \textbf{0.150 \pm 0.006} & \textbf{6.20 \pm 0.00} & \textbf{100.0\%} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+
+\begin{table}[htbp]
+\centering
+\caption{극한 파라미터 변동 환경(질량 $+30\%$, 모터 지연 $50\,\text{ms}$) 강인성 평가}
+\label{tab:stress_benchmark}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{제어기} & \textbf{위치 RMSE (m)} $\downarrow$ & \textbf{최대 밀림 (m)} $\downarrow$ & \textbf{제어 진동 (Jitter)} $\downarrow$ & \textbf{생존율 (\%)} $\uparrow$ \\
+\midrule
+Vanilla PPO      & 0.038 \pm 0.003 & 0.089 \pm 0.009 & 0.01075 & 100.0\% \\
+DR-PPO (Ours)    & \textbf{0.075 \pm 0.003} & \textbf{0.118 \pm 0.007} & \textbf{0.03812} & \textbf{100.0\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\begin{table}[htbp]
+\centering
+\caption{과거 관찰 이력 크기($K$)에 따른 소거 실험 ($6.0\,\text{m/s}$ 돌풍 환경)}
+\label{tab:ablation_history}
+\begin{tabular}{cccccc}
+\toprule
+\textbf{버퍼 길이 ($K$)} & \textbf{관찰 차원} & \textbf{위치 RMSE (m)} $\downarrow$ & \textbf{최대 밀림 (m)} $\downarrow$ & \textbf{정착 시간 ($T_s$) (s)} $\downarrow$ & \textbf{Jitter} $\downarrow$ \\
+\midrule
+$K=0$ (Markovian)    & 18 & 0.057 \pm 0.011 & 0.072 \pm 0.016 & 3.17 \pm 2.66 & 0.67493 \\
+$K=2$                & 54 & 0.198 \pm 0.005 & 0.283 \pm 0.010 & 6.20 \pm 0.00 & 0.12157 \\
+\textbf{$K=4$ (Ours)} & 90 & \textbf{0.070 \pm 0.004} & \textbf{0.093 \pm 0.007} & \textbf{5.09 \pm 1.98} & \textbf{0.55511} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\begin{table}[htbp]
+\centering
+\caption{도메인 무작위화 구성 파라미터 소거 실험}
+\label{tab:ablation_dr}
+\begin{tabular}{lccc}
+\toprule
+\textbf{학습 구성 (Ablation Variant)} & \textbf{질량 스트레스 RMSE (m)} $\downarrow$ & \textbf{지연 스트레스 RMSE (m)} $\downarrow$ & \textbf{복합 스트레스 생존율 (\%)} $\uparrow$ \\
+\midrule
+\textbf{Full DR (Mass + Tau) (Ours)} & \textbf{0.079 \pm 0.005} & \textbf{0.076 \pm 0.004} & \textbf{100.0\%} \\
+No Mass DR (Tau Only)        & 0.086 \pm 0.005 & 0.086 \pm 0.004 & 100.0\% \\
+No Tau DR (Mass Only)        & 0.087 \pm 0.004 & 0.084 \pm 0.005 & 100.0\% \\
+Vanilla (No DR)              & 0.040 \pm 0.004 & 0.040 \pm 0.003 & 100.0\% \\
+\bottomrule
+\end{tabular}
+\end{table}

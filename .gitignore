@@ -1,0 +1,26 @@
+# 파이썬 가상환경 및 바이트코드
+drone_rl_env/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 학습 로그 및 텐서보드 (용량 방지)
+logs/
+*.tfevents.*
+
+# 중간 모델 체크포인트 및 백업 폴더
+models/*_old/
+models/checkpoints/
+
+# Optuna 스터디 임시 DB 및 직렬화 파일
+results/*.db
+results/*.pkl
+results/optuna_study.db
+
+# 운영체제 캐시 파일
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
