@@ -135,3 +135,29 @@ python generate_latex_tables.py
 # [상황] 모델 훈련 중 에피소드 평균 보상(ep_rew_mean)과 손실(loss) 수렴 추이를 웹으로 볼 때
 # [설명] 텐서보드 로컬 서버 실행 후 웹 브라우저(http://localhost:6006)에서 그래프 확인
 tensorboard --logdir=./logs
+
+
+--------------------------------------------------------------------------------
+8. 신규 팀원 환경 세팅 및 빠른 시작 가이드 (Git Clone 후 실행)
+--------------------------------------------------------------------------------
+# [Step 1] GitHub 원격 저장소 클론 및 디렉터리 이동
+git clone https://github.com/<본인-GitHub-아이디>/<저장소명>.git
+cd <저장소명>
+
+# [Step 2] 가상환경 생성 및 활성화 (Windows CMD 기준)
+python -m venv drone_rl_env
+drone_rl_env\Scripts\activate
+
+# [Step 3] 프로젝트 의존성 라이브러리 일괄 설치
+pip install -r requirements.txt
+
+# [Step 4] 시뮬레이션 환경 무결성 1초 검증
+# 출력: '환경 구동 성공!' 확인
+python test_env.py
+
+# [Step 5] 사전 학습된 최적 모델 기반 전체 벤치마크 및 논문 플롯 일괄 생성
+# 별도 모델 재학습 없이 results/ 내 그래프 및 LaTeX 표가 즉시 생성됨 (약 2분 소요)
+python run_all.py --skip-train
+
+# (선택) 3D 실시간 비행 시각화 GUI 창 확인
+python run_all.py --skip-train --visualize
