@@ -10,7 +10,7 @@
 3. Optuna 기반 보상 함수 자율 최적화 및 분석
 4. 모델 학습 및 기존 가중치 관리 (단일 / 순차 백업 학습)
 5. 단일 모델 비행 안정성 정밀 평가 (3D 궤적, 자세, 모터 파형)
-6. 전체 벤치마크 평가 및 논문용 산출물(LaTeX/플롯) 일괄 생성
+6. 전체 벤치마크 평가 및 산출물(LaTeX/플롯) 일괄 생성
 7. 학습 실시간 모니터링 (TensorBoard)
 
 --------------------------------------------------------------------------------
@@ -57,7 +57,7 @@ python test_env.py
 # [설명] 15회 Trial 동안 10만 스텝 단축 학습 및 6m/s 돌풍 검증을 반복하여 최적 가중치 JSON 도출
 python optimize_reward.py --n-trials 15 --timesteps 100000
 
-# [상황] Optuna 탐색 완료 후 수렴 곡선과 파라미터 중요도를 논문용 그래프로 뽑을 때
+# [상황] Optuna 탐색 완료 후 수렴 곡선과 파라미터 중요도를 그래프로 뽑을 때
 # [설명] optuna_study.db 데이터를 읽어 3분할 고해상도 분석 이미지(results/optuna_optimization_analysis.png) 생성
 python plot_optuna_results.py
 
@@ -95,9 +95,9 @@ python evaluate.py --model-path ./models/dr_best_model/best_model.zip
 
 
 --------------------------------------------------------------------------------
-6. 전체 벤치마크 평가 및 논문용 산출물(LaTeX/플롯) 일괄 생성
+6. 전체 벤치마크 평가 및 산출물(LaTeX/플롯) 일괄 생성
 --------------------------------------------------------------------------------
-# [상황] [★논문 작성 시 일상적 사용★] 학습된 가중치로 모든 벤치마크 플롯과 LaTeX 표를 뽑을 때
+# [상황] 학습된 가중치로 모든 벤치마크 플롯과 LaTeX 표를 뽑을 때
 # [설명] 모델 학습을 건너뛰고 3자 비교, 스트레스, 풍속 감도, 소거 실험 및 thesis_tables.tex 일괄 갱신 (약 2분 소요)
 python run_all.py --skip-train
 
@@ -125,7 +125,7 @@ python ablation_history.py
 # DR 물리 파라미터(Mass, Tau) 개별 기여도 소거 실험 수행
 python ablation_dr.py
 
-# 취합된 결과를 논문용 Overleaf 양식 LaTeX 표(.tex)로 추출
+# 취합된 결과를 Overleaf 양식 LaTeX 표(.tex)로 추출
 python generate_latex_tables.py
 
 
@@ -155,7 +155,7 @@ pip install -r requirements.txt
 # 출력: '환경 구동 성공!' 확인
 python test_env.py
 
-# [Step 5] 사전 학습된 최적 모델 기반 전체 벤치마크 및 논문 플롯 일괄 생성
+# [Step 5] 사전 학습된 최적 모델 기반 전체 벤치마크 생성
 # 별도 모델 재학습 없이 results/ 내 그래프 및 LaTeX 표가 즉시 생성됨 (약 2분 소요)
 python run_all.py --skip-train
 
