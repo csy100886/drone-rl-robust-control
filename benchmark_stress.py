@@ -189,7 +189,7 @@ def main():
     dr_results = evaluate_policy_under_stress(dr_model, num_episodes=NUM_EVAL_EPISODES)
 
     # -------------------------------------------------------------
-    # 논문 작성용 결과 요약 테이블 출력
+    # 작성용 결과 요약 테이블 출력
     # -------------------------------------------------------------
     print("\n" + "=" * 70)
     print(f"{'평가 지표 (Stress Test)':<28} | {'Vanilla PPO':<18} | {'DR-PPO (제안 기법)':<18}")

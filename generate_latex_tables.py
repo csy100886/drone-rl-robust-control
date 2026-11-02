@@ -439,7 +439,7 @@ def main():
     args = parser.parse_args()
 
     print("=" * 70)
-    print("논문 삽입용 LaTeX 표 자동 생성 파이프라인 가동")
+    print("LaTeX 표 자동 생성 파이프라인 가동")
     print("=" * 70)
 
     t1_data = evaluate_3way_benchmark(episodes=args.episodes)
@@ -449,7 +449,6 @@ def main():
 
     tex_content = []
     tex_content.append("% ===========================================================")
-    tex_content.append("% 학부 졸업논문 4대 핵심 실험 결과 LaTeX 표 (자동 생성본)")
     tex_content.append("% 필요 패키지: \\usepackage{booktabs}, \\usepackage{multirow}")
     tex_content.append("% ===========================================================\n")
 

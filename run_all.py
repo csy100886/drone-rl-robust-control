@@ -101,9 +101,9 @@ def main():
     run_command([python_bin, "ablation_dr.py"] + dr_eval_flag, "도메인 무작위화 파라미터 소거 실험")
 
     # -------------------------------------------------------------
-    # [Stage 5] 논문용 LaTeX 표 자동 생성
+    # [Stage 5] LaTeX 표 자동 생성
     # -------------------------------------------------------------
-    print_banner("Stage 5. 학부 졸업논문 제출용 LaTeX 표 취합 및 생성")
+    print_banner("Stage 5. LaTeX 표 취합 및 생성")
     run_command([python_bin, "generate_latex_tables.py", "--episodes", str(args.eval_episodes)], "LaTeX 통합 결과 표 생성")
 
     # -------------------------------------------------------------
@@ -119,7 +119,7 @@ def main():
     total_elapsed = time.time() - total_start
     print_banner("전체 파이프라인 수행 완료")
     print(f"총 소요 시간: {total_elapsed / 60:.1f}분 ({total_elapsed:.1f}초)")
-    print("\n[생성된 논문 결과물 목록]")
+    print("\n[생성된 결과물 목록]")
     print(f"1. LaTeX 표 파일 : ./results/thesis_tables.tex")
     print(f"2. 결과 그래프들 : ./results/*.png")
     
